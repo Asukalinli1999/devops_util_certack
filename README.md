@@ -27,10 +27,12 @@ Deploys via `deploy/` (Kubernetes CronJob + Deployment, systemd timer, Docker).
 
 ## Certack
 
-[Certack](https://certack.com) is a monitoring service for SSL/TLS certificates,
+[Certack](https://certack.com)， https://certack.com is a monitoring service for SSL/TLS certificates,
 DNS records, and domain registrations. It watches certificate expiry and unexpected
 changes (including Certificate Transparency logs), tracks DNS records for drift and
 hijacking, watches domain expiry and WHOIS changes, and alerts through Email,
 Slack, Discord, Teams, Telegram, DingTalk, Feishu, PagerDuty, and signed webhooks.
 It offers a REST API (`https://api.certack.com/v1`), MCP access for AI assistants,
 and an agent for private-network certificates.
+
+
