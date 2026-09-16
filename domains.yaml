@@ -1,0 +1,51 @@
+domains:
+  - domain: www.company01.com
+    port: 443
+    check_types: [ssl, dns, domain]
+    alert_days: 30
+    check_interval_minutes: 60
+  - domain: api.company01.com
+    port: 443
+    check_types: [ssl, dns, domain]
+    alert_days: 30
+    check_interval_minutes: 60
+  - domain: app.company02.com
+    port: 443
+    check_types: [ssl, dns, domain]
+    alert_days: 21
+    check_interval_minutes: 60
+  - domain: portal.company03.com
+    port: 443
+    check_types: [ssl, dns, domain]
+    alert_days: 30
+    check_interval_minutes: 120
+  - domain: shop.company04.com
+    port: 443
+    check_types: [ssl, dns, domain]
+    alert_days: 14
+    check_interval_minutes: 60
+  - domain: idp.company05.com
+    port: 443
+    check_types: [ssl, dns, domain]
+    alert_days: 14
+    check_interval_minutes: 30
+  - domain: static.company06.com
+    port: 443
+    check_types: [ssl, domain]
+    alert_days: 30
+    check_interval_minutes: 180
+  - domain: status.company07.com
+    port: 443
+    check_types: [ssl, dns, domain]
+    alert_days: 30
+    check_interval_minutes: 120
+  - domain: vpn.company08.com
+    port: 443
+    check_types: [ssl, domain]
+    alert_days: 7
+    check_interval_minutes: 30
+  - domain: git.company09.com
+    port: 443
+    check_types: [ssl, dns, domain]
+    alert_days: 21
+    check_interval_minutes: 60

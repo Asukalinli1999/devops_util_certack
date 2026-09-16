@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: certack-webhook
+  labels:
+    app: certack-utils
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: certack-webhook
+  template:
+    metadata:
+      labels:
+        app: certack-webhook
+    spec:
+      containers:
+        - name: webhook
+          image: your-registry/certack-utils:1.0.0
+          args: ["serve"]
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: certack-ops
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: certack-webhook
+spec:
+  selector:
+    app: certack-webhook
+  ports:
+    - port: 80
+      targetPort: 8080

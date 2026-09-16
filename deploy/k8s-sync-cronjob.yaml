@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: certack-sync
+  labels:
+    app: certack-utils
+spec:
+  schedule: "*/15 * * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: certack-utils
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: sync
+              image: your-registry/certack-utils:1.0.0
+              args: ["sync"]
+              envFrom:
+                - secretRef:
+                    name: certack-ops
+              env:
+                - name: CERTACK_DOMAINS_FILE
+                  value: /etc/certack/domains.yaml
+              volumeMounts:
+                - name: domains
+                  mountPath: /etc/certack
+                  readOnly: true
+          volumes:
+            - name: domains
+              configMap:
+                name: certack-domains
